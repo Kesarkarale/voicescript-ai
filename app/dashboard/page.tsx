@@ -2,7 +2,20 @@ import UploadBox from "@/components/UploadBox";
 import TranscriptCard from "@/components/TranscriptCard";
 import SummaryCard from "@/components/SummaryCard";
 import Sidebar from "@/components/Sidebar";
+import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
+export default async function Dashboard() {
+  const { userId } = await auth();
+
+  if (!userId) {
+    redirect("/sign-in");
+  }
+
+  return (
+    // dashboard code
+  );
+}
 export default function Dashboard() {
   return (
     <main className="min-h-screen bg-black text-white">
