@@ -1,3 +1,5 @@
+import { SignInButton, SignUpButton } from "@clerk/nextjs";
+
 export default function Home() {
   return (
     <main className="min-h-screen bg-black text-white">
@@ -38,14 +40,18 @@ export default function Home() {
             </p>
 
             <div className="flex gap-4 mt-8">
-              <button className="bg-blue-600 px-6 py-3 rounded-xl">
-                Start Free
+             <SignUpButton>
+            <button className="bg-blue-600 px-6 py-3 rounded-xl">
+             Start Free
               </button>
+     </SignUpButton>
 
-              <button className="border border-zinc-700 px-6 py-3 rounded-xl">
-                Watch Demo
-              </button>
-            </div>
+  <SignInButton>
+    <button className="border border-zinc-700 px-6 py-3 rounded-xl">
+      Login
+    </button>
+  </SignInButton>
+</div>
           </div>
 
           <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
