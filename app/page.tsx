@@ -1,7 +1,9 @@
  import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Footer from "@/components/Footer";
+// ===============================
 // app/page.tsx (Home Page)
+// ===============================
 import { Mic, Sparkles, Zap, Shield, ArrowRight } from "lucide-react";
 
 export default function HomePage() {
@@ -19,9 +21,12 @@ export default function HomePage() {
           <a href="/dashboard" className="hover:text-white">Dashboard</a>
         </nav>
 
-        <button className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-sm font-medium">
+        <a
+          href="/dashboard"
+          className="px-4 py-2 rounded-xl bg-blue-600 hover:bg-blue-500 text-sm font-medium"
+        >
           Get Started
-        </button>
+        </a>
       </header>
 
       {/* Hero */}
@@ -42,7 +47,11 @@ export default function HomePage() {
           <button className="px-6 py-3 bg-blue-600 rounded-xl hover:bg-blue-500 flex items-center gap-2">
             Start Recording <Mic size={18} />
           </button>
-          <a href="/dashboard" className="px-6 py-3 bg-zinc-800 rounded-xl hover:bg-zinc-700">
+
+          <a
+            href="/dashboard"
+            className="px-6 py-3 bg-zinc-800 rounded-xl hover:bg-zinc-700"
+          >
             Go to Dashboard
           </a>
         </div>
@@ -75,10 +84,17 @@ export default function HomePage() {
 
       {/* CTA */}
       <section className="px-6 py-24 text-center">
-        <h3 className="text-3xl md:text-4xl font-bold">Start using VoiceScript AI</h3>
-        <p className="text-zinc-400 mt-4">Boost productivity with voice-powered scripting.</p>
+        <h3 className="text-3xl md:text-4xl font-bold">
+          Start using VoiceScript AI
+        </h3>
+        <p className="text-zinc-400 mt-4">
+          Boost productivity with voice-powered scripting.
+        </p>
 
-        <a href="/dashboard" className="mt-8 inline-flex items-center gap-2 px-8 py-4 bg-blue-600 rounded-xl hover:bg-blue-500">
+        <a
+          href="/dashboard"
+          className="mt-8 inline-flex items-center gap-2 px-8 py-4 bg-blue-600 rounded-xl hover:bg-blue-500"
+        >
           Open Dashboard <ArrowRight size={18} />
         </a>
       </section>
@@ -92,15 +108,22 @@ export default function HomePage() {
 }
 
 
-// app/dashboard/page.tsx (Dashboard Page)
+// ===============================
+// app/dashboard/page.tsx
+// ===============================
+
 export default function DashboardPage() {
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6">
       <h1 className="text-3xl font-bold">Dashboard</h1>
-      <p className="text-zinc-400 mt-2">Welcome to your VoiceScript AI dashboard.</p>
+      <p className="text-zinc-400 mt-2">
+        Welcome to your VoiceScript AI dashboard.
+      </p>
 
       <div className="mt-8 p-6 bg-zinc-900 rounded-2xl border border-zinc-800">
-        <p className="text-zinc-300">🎤 Start recording feature will go here</p>
+        <p className="text-zinc-300">
+          🎤 Start recording feature will be implemented here
+        </p>
       </div>
     </div>
   );
