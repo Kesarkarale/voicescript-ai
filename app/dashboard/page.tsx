@@ -1,77 +1,102 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Mic, Square, Copy, Trash2 } from "lucide-react";
 
 export default function DashboardPage() {
   const [recording, setRecording] = useState(false);
   const [text, setText] = useState("");
 
-  // dummy voice simulation (next step we will connect real API)
-  const startRecording = () => {
-    setRecording(true);
+  const recognitionRef = useRef<any>(null);
 
-    setTimeout(() => {
-      setText("Hello, this is your VoiceScript AI generated text example.");
-      setRecording(false);
-    }, 3000);
+  const startRecording = () => {
+    const SpeechRecognition =
+      (window as any).SpeechRecognition ||
+      (window as any).webkitSpeechRecognition;
+
+    if (!SpeechRecognition) {
+      alert("Your browser does not support voice recognition");
+      return;
+    }
+
+    const recognition = new SpeechRecognition();
+    recognition.lang = "en-US";
+    recognition.continuous = true;
+    recognition.interimResults = true;
+
+    recognition.onresult = (event: any) => {
+      let transcript = "";
+
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        transcript += event.results[i][0].transcript;
+      }
+
+      setText(transcript);
+    };
+
+    recognition.onerror = (err: any) => {
+      console.log(err);
+    };
+
+    recognition.start();
+    recognitionRef.current = recognition;
+    setRecording(true);
   };
 
   const stopRecording = () => {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop();
+    }
     setRecording(false);
   };
 
   return (
     <div className="min-h-screen bg-zinc-950 text-white p-6">
 
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <h1 className="text-3xl font-bold">
-          VoiceScript <span className="text-blue-500">Dashboard</span>
-        </h1>
-      </div>
+      <h1 className="text-3xl font-bold">
+        VoiceScript <span className="text-blue-500">Dashboard</span>
+      </h1>
 
-      {/* Main Grid */}
       <div className="grid md:grid-cols-2 gap-6 mt-10">
 
-        {/* Recorder Box */}
+        {/* Recorder */}
         <div className="p-6 bg-zinc-900 rounded-2xl border border-zinc-800">
-
           <h2 className="text-xl font-semibold mb-4">🎤 Voice Recorder</h2>
 
-          <div className="flex gap-4">
-            {!recording ? (
-              <button
-                onClick={startRecording}
-                className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-xl"
-              >
-                <Mic size={18} /> Start
-              </button>
-            ) : (
-              <button
-                onClick={stopRecording}
-                className="flex items-center gap-2 px-4 py-2 bg-red-600 rounded-xl"
-              >
-                <Square size={18} /> Stop
-              </button>
-            )}
-          </div>
+          {!recording ? (
+            <button
+              onClick={startRecording}
+              className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-xl"
+            >
+              <Mic size={18} /> Start Recording
+            </button>
+          ) : (
+            <button
+              onClick={stopRecording}
+              className="flex items-center gap-2 px-4 py-2 bg-red-600 rounded-xl"
+            >
+              <Square size={18} /> Stop Recording
+            </button>
+          )}
 
           <p className="text-zinc-400 mt-4">
-            {recording ? "Recording..." : "Click start to begin voice input"}
+            {recording ? "🎙 Listening..." : "Click start and speak"}
           </p>
         </div>
 
-        {/* Output Box */}
+        {/* Output */}
         <div className="p-6 bg-zinc-900 rounded-2xl border border-zinc-800">
-
-          <div className="flex justify-between items-center mb-4">
-            <h2 className="text-xl font-semibold">📝 Generated Script</h2>
+          <div className="flex justify-between mb-4">
+            <h2 className="text-xl font-semibold">📝 Script</h2>
 
             <div className="flex gap-2">
-              <button className="p-2 bg-zinc-800 rounded-lg">
+              <button
+                onClick={() => navigator.clipboard.writeText(text)}
+                className="p-2 bg-zinc-800 rounded-lg"
+              >
                 <Copy size={16} />
               </button>
+
               <button
                 onClick={() => setText("")}
                 className="p-2 bg-zinc-800 rounded-lg"
@@ -84,8 +109,7 @@ export default function DashboardPage() {
           <textarea
             value={text}
             onChange={(e) => setText(e.target.value)}
-            className="w-full h-64 p-4 bg-zinc-950 border border-zinc-800 rounded-xl text-white"
-            placeholder="Your converted speech will appear here..."
+            className="w-full h-64 p-4 bg-zinc-950 border border-zinc-800 rounded-xl"
           />
         </div>
 
