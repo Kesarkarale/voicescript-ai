@@ -14,36 +14,7 @@ export default function Dashboard() {
             VoiceScript<span className="text-blue-500">AI</span>
           </h1>
 
-          <nav className="space-y-2">
-            <Link
-              href="/dashboard"
-              className="block bg-blue-600 px-4 py-3 rounded-xl"
-            >
-              Dashboard
-            </Link>
-
-            <Link
-              href="/dashboard/uploads"
-              className="block px-4 py-3 rounded-xl hover:bg-zinc-900"
-            >
-              Uploads
-            </Link>
-
-            <Link
-              href="/dashboard/history"
-              className="block px-4 py-3 rounded-xl hover:bg-zinc-900"
-            >
-              History
-            </Link>
-
-            <Link
-              href="/dashboard/settings"
-              className="block px-4 py-3 rounded-xl hover:bg-zinc-900"
-            >
-              Settings
-            </Link>
-          </nav>
-
+           
           <div className="mt-auto bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
             <h3 className="font-semibold">Free Plan</h3>
             <p className="text-sm text-zinc-400 mt-2">
