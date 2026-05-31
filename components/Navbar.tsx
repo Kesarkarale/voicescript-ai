@@ -1,0 +1,21 @@
+export default function Navbar() {
+  return (
+    <nav className="border-b border-zinc-800">
+      <div className="mx-auto max-w-7xl px-6 py-5 flex items-center justify-between">
+        <h1 className="text-2xl font-bold">
+          VoiceScript<span className="text-blue-500">AI</span>
+        </h1>
+
+        <div className="hidden md:flex gap-8 text-sm">
+          <a href="#features">Features</a>
+          <a href="#pricing">Pricing</a>
+          <a href="/dashboard">Dashboard</a>
+        </div>
+
+        <button className="bg-blue-600 px-4 py-2 rounded-lg">
+          Get Started
+        </button>
+      </div>
+    </nav>
+  );
+}
