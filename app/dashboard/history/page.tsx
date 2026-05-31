@@ -10,22 +10,46 @@ export default function HistoryPage() {
           Transcript History
         </h1>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-          No transcript history available.
-        </div>
         <div className="space-y-4">
-  <div className="bg-zinc-900 p-4 rounded-xl">
-    meeting.mp3
-  </div>
+          <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-xl flex justify-between items-center">
+            <div>
+              <h3 className="font-semibold">meeting.mp3</h3>
+              <p className="text-zinc-400 text-sm">
+                Generated transcript successfully
+              </p>
+            </div>
 
-  <div className="bg-zinc-900 p-4 rounded-xl">
-    podcast.wav
-  </div>
+            <span className="text-green-500">
+              Completed
+            </span>
+          </div>
 
-  <div className="bg-zinc-900 p-4 rounded-xl">
-    interview.mp4
-  </div>
-</div>
+          <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-xl flex justify-between items-center">
+            <div>
+              <h3 className="font-semibold">podcast.wav</h3>
+              <p className="text-zinc-400 text-sm">
+                Generated transcript successfully
+              </p>
+            </div>
+
+            <span className="text-green-500">
+              Completed
+            </span>
+          </div>
+
+          <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-xl flex justify-between items-center">
+            <div>
+              <h3 className="font-semibold">interview.mp4</h3>
+              <p className="text-zinc-400 text-sm">
+                Processing audio file
+              </p>
+            </div>
+
+            <span className="text-yellow-500">
+              Processing
+            </span>
+          </div>
+        </div>
       </section>
     </main>
   );
