@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export default function Navbar() {
   return (
     <nav className="border-b border-zinc-800">
@@ -15,6 +17,19 @@ export default function Navbar() {
         <button className="bg-blue-600 px-4 py-2 rounded-lg">
           Get Started
         </button>
+        <Link
+   href="/sign-in"
+  className="border border-zinc-700 px-4 py-2 rounded-lg"
+>
+  Login
+</Link>
+
+<Link
+  href="/sign-up"
+  className="bg-blue-600 px-4 py-2 rounded-lg"
+>
+  Register
+</Link>
       </div>
     </nav>
   );
