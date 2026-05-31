@@ -1,148 +1,131 @@
-"use client";
+import UploadBox from "@/components/UploadBox";
+import TranscriptCard from "@/components/TranscriptCard";
+import SummaryCard from "@/components/SummaryCard";
 
-import { useState, useRef } from "react";
-import { Mic, Square, Copy, Trash2 } from "lucide-react";
-
-export default function DashboardPage() {
-  const [recording, setRecording] = useState(false);
-  const [text, setText] = useState("");
-
-  const improveText = async () => {
-  if (!text) return;
-
-  setLoading(true);
-
-  try {
-    const res = await fetch("/api/improve", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ text }),
-    });
-
-    const data = await res.json();
-    setText(data.result);
-  } catch (err) {
-    console.log(err);
-  }
-
-  setLoading(false);
-};
-  const recognitionRef = useRef<any>(null);
-
-  const startRecording = () => {
-    const SpeechRecognition =
-      (window as any).SpeechRecognition ||
-      (window as any).webkitSpeechRecognition;
-
-    if (!SpeechRecognition) {
-      alert("Your browser does not support voice recognition");
-      return;
-    }
-
-    const recognition = new SpeechRecognition();
-    recognition.lang = "en-US";
-    recognition.continuous = true;
-    recognition.interimResults = true;
-
-    recognition.onresult = (event: any) => {
-      let transcript = "";
-
-      for (let i = event.resultIndex; i < event.results.length; i++) {
-        transcript += event.results[i][0].transcript;
-      }
-
-      setText(transcript);
-    };
-
-    recognition.onerror = (err: any) => {
-      console.log(err);
-    };
-
-    recognition.start();
-    recognitionRef.current = recognition;
-    setRecording(true);
-  };
-
-  const stopRecording = () => {
-    if (recognitionRef.current) {
-      recognitionRef.current.stop();
-    }
-    setRecording(false);
-  };
-
+export default function Dashboard() {
   return (
-    <div className="min-h-screen bg-zinc-950 text-white p-6">
+    <main className="min-h-screen bg-black text-white">
+      <div className="flex">
+        {/* Sidebar */}
+        <aside className="w-72 min-h-screen border-r border-zinc-800 p-6">
+          <h1 className="text-2xl font-bold mb-10">
+            VoiceScript<span className="text-blue-500">AI</span>
+          </h1>
 
-      <h1 className="text-3xl font-bold">
-        VoiceScript <span className="text-blue-500">Dashboard</span>
-      </h1>
-
-      <div className="grid md:grid-cols-2 gap-6 mt-10">
-
-        {/* Recorder */}
-        <div className="p-6 bg-zinc-900 rounded-2xl border border-zinc-800">
-          <h2 className="text-xl font-semibold mb-4">🎤 Voice Recorder</h2>
-
-          {!recording ? (
-            <button
-              onClick={startRecording}
-              className="flex items-center gap-2 px-4 py-2 bg-blue-600 rounded-xl"
-            >
-              <Mic size={18} /> Start Recording
+          <nav className="space-y-3">
+            <button className="w-full text-left bg-blue-600 px-4 py-3 rounded-xl">
+              Dashboard
             </button>
-          ) : (
-            <button
-              onClick={stopRecording}
-              className="flex items-center gap-2 px-4 py-2 bg-red-600 rounded-xl"
-            >
-              <Square size={18} /> Stop Recording
+
+            <button className="w-full text-left hover:bg-zinc-900 px-4 py-3 rounded-xl">
+              Uploads
             </button>
-      
-          )}
 
-          <p className="text-zinc-400 mt-4">
-            {recording ? "🎙 Listening..." : "Click start and speak"}
-          </p>
-        </div>
+            <button className="w-full text-left hover:bg-zinc-900 px-4 py-3 rounded-xl">
+              Transcript History
+            </button>
 
-        {/* Output */}
-        <div className="p-6 bg-zinc-900 rounded-2xl border border-zinc-800">
-          <div className="flex justify-between mb-4">
-            <h2 className="text-xl font-semibold">📝 Script</h2>
+            <button className="w-full text-left hover:bg-zinc-900 px-4 py-3 rounded-xl">
+              AI Summaries
+            </button>
 
-            <div className="flex gap-2">
-              <button
-                onClick={() => navigator.clipboard.writeText(text)}
-                className="p-2 bg-zinc-800 rounded-lg"
-              >
-                <Copy size={16} />
-              </button>
+            <button className="w-full text-left hover:bg-zinc-900 px-4 py-3 rounded-xl">
+              Billing
+            </button>
 
-              <button
-                onClick={() => setText("")}
-                className="p-2 bg-zinc-800 rounded-lg"
-              >
-                <Trash2 size={16} />
-              </button>
-               <button
-  onClick={improveText}
-  className="px-3 py-2 bg-green-600 rounded-lg text-sm"
->
-  {loading ? "Improving..." : "✨ AI Improve"}
-</button>
+            <button className="w-full text-left hover:bg-zinc-900 px-4 py-3 rounded-xl">
+              Settings
+            </button>
+          </nav>
+
+          <div className="mt-12 p-4 bg-zinc-900 rounded-2xl">
+            <h3 className="font-semibold">Pro Plan</h3>
+            <p className="text-zinc-400 text-sm mt-2">
+              Unlimited uploads and exports.
+            </p>
+          </div>
+        </aside>
+
+        {/* Main Content */}
+        <section className="flex-1 p-8">
+          {/* Header */}
+          <div className="flex items-center justify-between mb-8">
+            <div>
+              <h2 className="text-4xl font-bold">
+                Dashboard
+              </h2>
+
+              <p className="text-zinc-400 mt-2">
+                Manage uploads, transcripts and AI summaries.
+              </p>
+            </div>
+
+            <div className="h-12 w-12 rounded-full bg-blue-600 flex items-center justify-center font-bold">
+              K
             </div>
           </div>
 
-          <textarea
-            value={text}
-            onChange={(e) => setText(e.target.value)}
-            className="w-full h-64 p-4 bg-zinc-950 border border-zinc-800 rounded-xl"
-          />
-        </div>
+          {/* Stats */}
+          <div className="grid md:grid-cols-4 gap-6 mb-8">
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <p className="text-zinc-400">Uploads</p>
+              <h3 className="text-3xl font-bold mt-2">12</h3>
+            </div>
 
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <p className="text-zinc-400">Transcripts</p>
+              <h3 className="text-3xl font-bold mt-2">38</h3>
+            </div>
+
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <p className="text-zinc-400">AI Summaries</p>
+              <h3 className="text-3xl font-bold mt-2">25</h3>
+            </div>
+
+            <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6">
+              <p className="text-zinc-400">Storage</p>
+              <h3 className="text-3xl font-bold mt-2">1.2GB</h3>
+            </div>
+          </div>
+
+          {/* Main Grid */}
+          <div className="grid xl:grid-cols-3 gap-6">
+            <UploadBox />
+            <TranscriptCard />
+            <SummaryCard />
+          </div>
+
+          {/* Recent Activity */}
+          <div className="mt-8 bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
+            <h3 className="text-2xl font-bold mb-6">
+              Recent Activity
+            </h3>
+
+            <div className="space-y-4">
+              <div className="flex justify-between border-b border-zinc-800 pb-3">
+                <span>meeting-recording.mp3</span>
+                <span className="text-green-500">
+                  Completed
+                </span>
+              </div>
+
+              <div className="flex justify-between border-b border-zinc-800 pb-3">
+                <span>podcast-episode.wav</span>
+                <span className="text-green-500">
+                  Completed
+                </span>
+              </div>
+
+              <div className="flex justify-between">
+                <span>client-call.mp4</span>
+                <span className="text-yellow-500">
+                  Processing
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
-    </div>
+    </main>
   );
 }
