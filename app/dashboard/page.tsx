@@ -7,6 +7,28 @@ export default function DashboardPage() {
   const [recording, setRecording] = useState(false);
   const [text, setText] = useState("");
 
+  const improveText = async () => {
+  if (!text) return;
+
+  setLoading(true);
+
+  try {
+    const res = await fetch("/api/improve", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ text }),
+    });
+
+    const data = await res.json();
+    setText(data.result);
+  } catch (err) {
+    console.log(err);
+  }
+
+  setLoading(false);
+};
   const recognitionRef = useRef<any>(null);
 
   const startRecording = () => {
@@ -77,6 +99,12 @@ export default function DashboardPage() {
             >
               <Square size={18} /> Stop Recording
             </button>
+      <button
+  onClick={improveText}
+  className="px-3 py-2 bg-green-600 rounded-lg text-sm"
+>
+  {loading ? "Improving..." : "✨ AI Improve"}
+</button>
           )}
 
           <p className="text-zinc-400 mt-4">
