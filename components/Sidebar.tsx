@@ -3,7 +3,7 @@ import { UserButton } from "@clerk/nextjs";
 
 export default function Sidebar() {
   return (
-    <aside className="hidden md:flex w-64 min-h-screen border-r border-zinc-800 flex-col p-6">
+    <aside className="hidden md:flex w-64 min-h-screen border-r border-zinc-800 flex-col p-6 bg-black">
       <h1 className="text-2xl font-bold mb-10">
         VoiceScript<span className="text-blue-500">AI</span>
       </h1>
@@ -38,18 +38,19 @@ export default function Sidebar() {
         </Link>
       </nav>
 
-     <div className="mt-auto">
-  <div className="mb-4 flex justify-center">
-    <UserButton afterSignOutUrl="/" />
-  </div>
+      <div className="mt-auto">
+        <div className="flex justify-center mb-4">
+          <UserButton />
+        </div>
 
-  <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-    <h3 className="font-semibold">Free Plan</h3>
-    <p className="text-sm text-zinc-400 mt-2">
-      Upgrade to Pro for unlimited transcripts.
-    </p>
-  </div>
-</div>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
+          <h3 className="font-semibold">Free Plan</h3>
+
+          <p className="text-sm text-zinc-400 mt-2">
+            Upgrade to Pro for unlimited transcripts.
+          </p>
+        </div>
+      </div>
     </aside>
   );
 }
