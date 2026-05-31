@@ -4,7 +4,8 @@ import { useState } from "react";
 import { Upload } from "lucide-react";
 
 export default function UploadBox() {
-  
+  const [fileName, setFileName] = useState("");
+
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
