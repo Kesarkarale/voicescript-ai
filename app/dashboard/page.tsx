@@ -13,11 +13,6 @@ export default async function Dashboard() {
   }
 
   return (
-    // dashboard code
-  );
-}
-export default function Dashboard() {
-  return (
     <main className="min-h-screen bg-black text-white">
       <div className="flex">
         <Sidebar />
@@ -33,7 +28,6 @@ export default function Dashboard() {
             </p>
           </div>
 
-          {/* Stats */}
           <div className="grid md:grid-cols-4 gap-4 mb-8">
             <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-5">
               <p className="text-zinc-400">Uploads</p>
@@ -56,14 +50,12 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Main Cards */}
           <div className="grid xl:grid-cols-3 gap-6">
             <UploadBox />
             <TranscriptCard />
             <SummaryCard />
           </div>
 
-          {/* Activity */}
           <div className="mt-8 bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
             <h3 className="text-2xl font-bold mb-4">
               Recent Activity
