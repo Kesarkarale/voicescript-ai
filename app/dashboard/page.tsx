@@ -2,6 +2,7 @@
 import UploadBox from "@/components/UploadBox";
 import TranscriptCard from "@/components/TranscriptCard";
 import SummaryCard from "@/components/SummaryCard";
+import Sidebar from "@/components/Sidebar";
 
 export default function Dashboard() {
   return (
@@ -50,7 +51,7 @@ export default function Dashboard() {
             </p>
           </div>
         </aside>
-
+        <Sidebar />
         {/* Main Content */}
         <section className="flex-1 p-6 md:p-8">
           <div className="mb-8">
