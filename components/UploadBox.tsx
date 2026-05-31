@@ -6,31 +6,6 @@ import { Upload } from "lucide-react";
 export default function UploadBox() {
   const [fileName, setFileName] = useState("");
 
-  export default function UploadBox({
-  setTranscript,
-  setSummary,
-}: {
-  setTranscript: (text: string) => void;
-  setSummary: (text: string) => void;
-})
-  
-  const handleFileChange = async (
-  e: React.ChangeEvent<HTMLInputElement>
-) => {
-  const file = e.target.files?.[0];
-
-  if (!file) return;
-
-  setFileName(file.name);
-
-  setTranscript(
-    `Transcript generated for ${file.name}`
-  );
-
-  setSummary(
-    "This is an AI-generated summary of the uploaded file."
-  );
-};
   const handleFileChange = (
     e: React.ChangeEvent<HTMLInputElement>
   ) => {
