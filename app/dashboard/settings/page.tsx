@@ -13,6 +13,19 @@ export default function SettingsPage() {
         <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
           User settings will appear here.
         </div>
+        <div className="space-y-4">
+  <div className="bg-zinc-900 p-5 rounded-xl">
+    Profile Settings
+  </div>
+
+  <div className="bg-zinc-900 p-5 rounded-xl">
+    Notification Settings
+  </div>
+
+  <div className="bg-zinc-900 p-5 rounded-xl">
+    Billing Settings
+  </div>
+</div>
       </section>
     </main>
   );
