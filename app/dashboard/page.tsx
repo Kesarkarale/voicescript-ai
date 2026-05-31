@@ -1,4 +1,3 @@
- import Link from "next/link";
 import UploadBox from "@/components/UploadBox";
 import TranscriptCard from "@/components/TranscriptCard";
 import SummaryCard from "@/components/SummaryCard";
@@ -8,25 +7,13 @@ export default function Dashboard() {
   return (
     <main className="min-h-screen bg-black text-white">
       <div className="flex">
-        {/* Sidebar */}
-        <aside className="hidden md:flex w-64 min-h-screen border-r border-zinc-800 flex-col p-6">
-          <h1 className="text-2xl font-bold mb-10">
-            VoiceScript<span className="text-blue-500">AI</span>
-          </h1>
-
-           
-          <div className="mt-auto bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-            <h3 className="font-semibold">Free Plan</h3>
-            <p className="text-sm text-zinc-400 mt-2">
-              Upgrade to Pro for unlimited transcripts.
-            </p>
-          </div>
-        </aside>
         <Sidebar />
-        {/* Main Content */}
+
         <section className="flex-1 p-6 md:p-8">
           <div className="mb-8">
-            <h2 className="text-4xl font-bold">Dashboard</h2>
+            <h2 className="text-4xl font-bold">
+              Dashboard
+            </h2>
 
             <p className="text-zinc-400 mt-2">
               Upload audio and generate transcripts instantly.
@@ -56,7 +43,7 @@ export default function Dashboard() {
             </div>
           </div>
 
-          {/* Cards */}
+          {/* Main Cards */}
           <div className="grid xl:grid-cols-3 gap-6">
             <UploadBox />
             <TranscriptCard />
