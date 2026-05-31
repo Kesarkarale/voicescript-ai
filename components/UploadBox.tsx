@@ -4,7 +4,7 @@ import { Upload } from "lucide-react";
 
 export default function UploadBox() {
   return (
-    <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8">
+   <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-8 h-[420px]">
       <h2 className="text-2xl font-bold mb-6">
         Upload Audio or Video
       </h2>
