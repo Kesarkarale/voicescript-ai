@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { UserButton } from "@clerk/nextjs";
 
 export default function Sidebar() {
   return (
@@ -37,12 +38,18 @@ export default function Sidebar() {
         </Link>
       </nav>
 
-      <div className="mt-auto bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
-        <h3 className="font-semibold">Free Plan</h3>
-        <p className="text-sm text-zinc-400 mt-2">
-          Upgrade to Pro for unlimited transcripts.
-        </p>
-      </div>
+     <div className="mt-auto">
+  <div className="mb-4 flex justify-center">
+    <UserButton afterSignOutUrl="/" />
+  </div>
+
+  <div className="bg-zinc-900 border border-zinc-800 rounded-2xl p-4">
+    <h3 className="font-semibold">Free Plan</h3>
+    <p className="text-sm text-zinc-400 mt-2">
+      Upgrade to Pro for unlimited transcripts.
+    </p>
+  </div>
+</div>
     </aside>
   );
 }
