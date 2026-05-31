@@ -10,22 +10,34 @@ export default function SettingsPage() {
           Settings
         </h1>
 
-        <div className="bg-zinc-900 border border-zinc-800 rounded-3xl p-6">
-          User settings will appear here.
-        </div>
         <div className="space-y-4">
-  <div className="bg-zinc-900 p-5 rounded-xl">
-    Profile Settings
-  </div>
+          <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-xl">
+            <h2 className="text-xl font-semibold mb-2">
+              Profile Settings
+            </h2>
+            <p className="text-zinc-400">
+              Manage your account information.
+            </p>
+          </div>
 
-  <div className="bg-zinc-900 p-5 rounded-xl">
-    Notification Settings
-  </div>
+          <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-xl">
+            <h2 className="text-xl font-semibold mb-2">
+              Notification Settings
+            </h2>
+            <p className="text-zinc-400">
+              Configure email and app notifications.
+            </p>
+          </div>
 
-  <div className="bg-zinc-900 p-5 rounded-xl">
-    Billing Settings
-  </div>
-</div>
+          <div className="bg-zinc-900 border border-zinc-800 p-5 rounded-xl">
+            <h2 className="text-xl font-semibold mb-2">
+              Billing Settings
+            </h2>
+            <p className="text-zinc-400">
+              View subscription and payment details.
+            </p>
+          </div>
+        </div>
       </section>
     </main>
   );
