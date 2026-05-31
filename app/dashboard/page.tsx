@@ -99,12 +99,7 @@ export default function DashboardPage() {
             >
               <Square size={18} /> Stop Recording
             </button>
-      <button
-  onClick={improveText}
-  className="px-3 py-2 bg-green-600 rounded-lg text-sm"
->
-  {loading ? "Improving..." : "✨ AI Improve"}
-</button>
+      
           )}
 
           <p className="text-zinc-400 mt-4">
@@ -131,6 +126,12 @@ export default function DashboardPage() {
               >
                 <Trash2 size={16} />
               </button>
+               <button
+  onClick={improveText}
+  className="px-3 py-2 bg-green-600 rounded-lg text-sm"
+>
+  {loading ? "Improving..." : "✨ AI Improve"}
+</button>
             </div>
           </div>
 
